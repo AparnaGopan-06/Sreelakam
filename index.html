@@ -11,7 +11,7 @@
       color: #2b2b2b;
     }
 
-    /* ===== NEWS TICKER (SLOWER) ===== */
+    /* ===== NEWS TICKER (SLOW) ===== */
     .news-ticker {
       background: #5a3a1a;
       color: white;
@@ -27,7 +27,7 @@
     .news-ticker p {
       display: inline-block;
       padding-left: 100%;
-      animation: scrollNews 50s linear infinite; /* MUCH slower now */
+      animation: scrollNews 50s linear infinite; /* slow bulletin */
     }
 
     @keyframes scrollNews {
@@ -69,14 +69,14 @@
       color: #5a3a1a;
     }
 
-    /* ===== SCROLL-IN ANIMATION (A TAD FASTER) ===== */
+    /* ===== SECTIONS (AUTO-APPEAR ON LOAD) ===== */
     .section, .announcements {
       margin-top: 20px;
       padding: 15px;
       border-radius: 5px;
       opacity: 0;
-      transform: translateY(25px);
-      transition: all 0.8s ease-in-out; /* slightly faster than before */
+      transform: translateY(20px);
+      transition: all 0.7s ease-in-out;
     }
 
     .section {
@@ -113,7 +113,7 @@
 </head>
 <body>
 
-  <!-- MOVING NEWS BULLETIN (UPDATED TEXT + SLOWER SPEED) -->
+  <!-- MOVING NEWS BULLETIN -->
   <div class="news-ticker">
     <p>
       📢 Breaking: Aparna has launched a website. |
@@ -147,12 +147,12 @@
         Sreelakam Hub is the official (semi-serious) family information portal designed to keep everyone reasonably informed, occasionally entertained, and mildly organized.
       </p>
       <ul>
-        <li>Family updates (when WhatsApp feels too crowded)</li>
-        <li>Event coordination (with inevitable last-minute changes)</li>
+        <li>Family updates</li>
+        <li>Event coordination</li>
         <li>Casual documentation of household happenings</li>
         <li>Periodic reminders of what’s going on in Sreelakam</li>
       </ul>
-      <p>Efficiency, clarity, and a little bit of chaos — that’s how things work here.</p>
+      <p>Efficiency, clarity, and a little bit of fights — that’s how things work here.</p>
     </div>
 
     <div class="announcements hidden">
@@ -161,7 +161,7 @@
         <li><strong>Breaking:</strong> Aparna has launched a website.</li>
         <li><strong>Family Bulletin:</strong> Mr. Gopakumar has completed AI course.</li>
         <li><strong>Update:</strong> Usha gearing up for final days at Kerala Bank.</li>
-        <li><strong>Missing:</strong> Aravind — status: as usual.</li>
+        <li><strong>Missing:</strong> Aravind status: Missing as usual.</li>
         <li><strong>Important Notice:</strong> This website is for fun — do not take it too seriously.</li>
       </ul>
     </div>
@@ -174,20 +174,13 @@
   </div>
 
 <script>
-  const sections = document.querySelectorAll(".section, .announcements");
-
-  const revealOnScroll = () => {
-    sections.forEach(section => {
-      const position = section.getBoundingClientRect().top;
-      const screenHeight = window.innerHeight;
-
-      if (position < screenHeight - 80) { // slightly earlier reveal
-        section.classList.add("show");
-      }
-    });
-  };
-
-  window.addEventListener("scroll", revealOnScroll);
+  // Auto-show sections shortly after page loads (no scrolling needed)
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.querySelectorAll(".section, .announcements")
+        .forEach(el => el.classList.add("show"));
+    }, 300); // 0.3 second soft delay
+  });
 </script>
 
 </body>
